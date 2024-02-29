@@ -1,0 +1,158 @@
+
+
+/* Aquí empieza los estilos del cuerpo de la página */
+/*carrusel*/
+.nuestrosServicios{
+    display: flex;
+    width: 100%;
+    height: 700px;
+    position: relative;
+}
+
+.imgNuestosServicios{
+    display: flex;
+    width: 0px;
+    flex-grow: 1;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: width 0.5s ease, opacity 0.5s ease;
+}
+
+.imgNuestosServicios:hover{
+    width: 500px;
+    opacity: 1;
+    filter: contrast(120%);
+  }
+
+/*hasta aquí carrusel*/
+.options-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente las opciones */
+}
+
+.option {
+    margin-right: 20px;
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+.options-container button {
+    background-color: #f9f9f9;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.options-container button.selected {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.personalizar {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Alinea los elementos verticalmente */
+}
+
+#formulario {
+    margin-top: auto; /* Empuja el formulario hacia abajo */
+    background-color: #f9f9f9; /* Color de fondo */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px; /* Borde redondeado */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    max-width: 600px; /* Ancho máximo del formulario */
+    margin-left: auto; /* Centra horizontalmente el formulario */
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+#formulario h2 {
+    margin-top: 0; /* Elimina el margen superior del encabezado */
+}
+
+#formulario label {
+    display: block; /* Muestra las etiquetas en una línea separada */
+    margin-bottom: 5px; /* Espacio inferior entre etiquetas */
+}
+
+#formulario input[type="text"],
+#formulario input[type="number"],
+#formulario select,
+#formulario textarea {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    padding: 8px; /* Espaciado interno */
+    margin-bottom: 10px; /* Espacio inferior entre campos */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px; /* Borde redondeado */
+    box-sizing: border-box; /* Incluye el borde en el tamaño total */
+}
+
+#formulario button {
+    background-color: #722c30; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Borde redondeado */
+    cursor: pointer;
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+#formulario button:hover {
+    background-color: #bb7b7b; /* Cambia el color de fondo al pasar el mouse */
+}
+
+.personalizar p{
+    color: black;
+    padding: 10px;
+    text-align: center;
+}
+
+.personalizar button {
+    background-color: #722c30; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none;
+    border-radius: 5px; /* Borde redondeado */
+    cursor: pointer;
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+.personalizar button:hover {
+    background-color: #bb7b7b; /* Cambia el color de fondo al pasar el mouse */
+}
+
+
+
+.whatsapp-bar {
+    background-color: #54c47f; /* Color de fondo de la barra */
+    color: #fff; /* Color del texto */
+    padding: 10px; /* Espaciado interno */
+    text-align: center; /* Alineación del texto */
+}
+
+.whatsapp-link {
+    color: #fff; /* Color del texto del enlace */
+    text-decoration: none; /* Sin subrayado */
+    font-weight: bold; /* Negrita */
+    margin-left: 10px; /* Margen izquierdo */
+}
+
+.infoAdicional{
+    display: grid;
+    background: rgb(255, 255, 255);
+    align-items: center;
+    text-align: center;
+    grid-template-columns: 1fr 1fr;
+    object-fit: cover;
+    gap: 20px;
+}
+
+@media(max-width: 1400px){
+    .infoAdicional{
+        grid-template-columns: 1fr;
+        size: 20%;
+    }
+}

@@ -1,0 +1,268 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Verdana;
+    background-color: #fcfcfe;
+    background: linear-gradient(to right,#f8f8f8, #b1abab, #e9e9e9);
+    background-size: 400%;
+    animation: fondo-anim 5s infinite alternate;
+}
+
+/* h1{
+text-align: center;
+color: rgb(244, 245, 243);
+background: linear-gradient(to right,#ce6f6f , #020202);
+border-radius: 7px;
+}
+
+header{
+background-color: #5b6074;
+background: linear-gradient(to right,#CD323A , #020202);
+height: 80px;
+width: 100%;
+top: 0;
+left: 0;
+}
+
+.nav{
+display: flex;
+justify-content: space-between;
+}
+
+.navLink{
+color: white;
+text-decoration: none;
+
+max-width: 992px;
+margin: 0 auto;
+}
+
+.imgLogo{
+height: 70px;
+width: 70px;
+margin-left: 10%;
+margin-top: 5%;
+line-height: 80px;
+}
+
+.navMenu{
+display: flex;
+margin-right: 40px;
+list-style: none;
+}
+
+.navMenuItem{
+font-size: 18px;
+margin: 0 10px;
+line-height: 80px;
+text-transform: uppercase;
+width: max-content;
+}
+
+.navMenuLink{
+padding: 8px 12px;
+border-radius: 3px;
+}
+
+.navMenuLink:hover{
+background-color: #6b3f3f;
+transition: 0.5s;
+}
+
+.toggle{
+color: #5a5959;
+background: none;
+border: none;
+padding: 0 20px;
+line-height: 60px;
+display: none;
+cursor: pointer;
+}
+
+.buscar{
+position: relative;
+top: 15px;
+margin-left: 20 px;
+padding: 5px;
+}
+
+.buscar:hover input{
+width: 240px;
+}
+
+.buscar input:focus{
+width: 240px;
+}
+.buscar input{
+width: 0px;
+height: 40px;
+padding: 0 20px;
+font-size: 18px;
+color: black;
+outline: none;
+border: 1px solid silver;
+border-radius: 30px;
+transition: all 0.6s ease;
+}
+
+.btn{
+width: 55px;
+height: 50px;
+background: #130b0b;
+line-height: 50px;
+position: absolute;
+top: 0;
+right: 0;
+text-align: center;
+color: rgb(65, 41, 41);
+font-size: 20px;
+border-radius: 50px;
+cursor: pointer;
+}
+.barra{
+background: rgb(90, 87, 87);
+position: fixed;
+top: 0;
+left: 0;
+height: 2px;
+width: 100%;
+}
+
+@keyframes scroll1 {
+100%{
+    width: 100%;
+}
+}
+
+.progreso{
+height: 100%;
+width: 0px;
+background: rgb(225, 213, 213);
+animation: scroll1 auto linear forwards;
+animation-timeline: scroll();
+}
+
+
+@media(max-width: 760px){
+body{
+    padding-top: 0px;
+}
+
+header{
+    height: 60px;
+}
+
+.imgLogo{
+    height: 50px;
+    width: 50px;
+}
+
+.navMenu{
+    z-index: 6;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    background-color: #5b6074;
+    background: linear-gradient(to right, #CD323A, #272829);
+    position: fixed;
+    left: 0;
+    top: 60px;
+    width: 100%;
+    padding: 20px 0;
+    height: calc(100% - 50px);
+    overflow-y: auto;
+
+    left: 100%;
+    transition: left 0.3s;
+}
+
+.navMenuItem{
+    line-height: 70px;
+}
+
+.navMenuLink:hover{
+    background: none;
+    color:#dedede;
+}
+
+.toggle{
+    display: block;
+}
+
+.navMenu_visible{
+    left:0;
+}
+.buscar{
+    top: 6px;
+    padding: 5px;
+}
+
+}  */
+
+/* Hasta aqui es los estilos de la cabecera */
+
+.tarjeta {
+    grid-column: span 1; /* Ocupa una columna completa */
+    grid-row: span 1; /* Ocupa una fila completa */
+    margin-bottom: 20px; /* Agrega margen entre las tarjetas */
+    height: 300px; /* Establece un tamaño fijo para las tarjetas */
+    overflow: hidden; /* Asegura que el contenido no se desborde */
+    position: relative;
+}
+
+.contenedorPreguntas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px; /* Agrega espacio entre las columnas y las filas */
+    text-align: center;
+    align-items: center;
+    margin-top: 150px;
+    margin-bottom: 150px;
+}
+
+@media(max-width: 760px){
+    .contenedorPreguntas{
+        gap: 10px;
+        grid-template-columns: 1fr 1fr; /* Reduce el número de columnas en dispositivos pequeños */
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+}
+  
+
+.tarjeta .front,
+.tarjeta .back {
+    backface-visibility: hidden;
+    border-radius: 10px;
+    bottom: 0;
+    font-size: 1.2rem;
+    left: 0;
+    padding: 1rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: transform 0.6s;
+}
+
+.tarjeta .front {
+    background-color: #ce6f6f ;
+    z-index: 2;
+}
+  
+.tarjeta .back {
+    background-color: #c1a8a8;
+    transform: rotateY(180deg);
+    z-index: 1;
+}
+  
+.tarjeta:hover .front {
+    transform: rotateY(-180deg);
+}
+  
+.tarjeta:hover .back {
+    transform: rotateY(0);
+}
