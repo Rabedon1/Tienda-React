@@ -1,106 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './Login.css'
+import logoNegro from '../image/logoNegro.png';
 
-const LogIn = () => {
-    return (
-        <div>
-            <div className="container" id="container">
-  <div className="form-container sign-up">
-    <form id="registroForm">
-      <h1>Crear Cuenta</h1>
-      <input
-        placeholder="Nombre"
-        type="text"
-        id="nombre"
-        pattern="[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+"
-        title="Solo se permiten letras y espacios "
-        name="nombre"
-        required=""
-      />
-      <input
-        placeholder="Apellido"
-        type="text"
-        id="apellidos"
-        pattern="[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+"
-        title="Solo se permiten letras y espacios "
-        name="apellidos"
-        required=""
-      />
-      <input
-        placeholder="Correo"
-        type="email"
-        id="correo"
-        name="correo"
-        required=""
-      />
-      <input
-        placeholder="Contraseña"
-        type="password"
-        id="contraseña"
-        name="contraseña"
-        required=""
-      />
-      <button type="button" onclick="registrar()">
-        Registrarse
-      </button>
-    </form>
-  </div>
-  <div className="form-container sign-in">
-    <form id="inicioSesionForm">
-      <a href="../index.html">
-        <img
-          className="imgLogo"
-          src="../imagenes/logoNegro.png"
-          width="100px"
-          alt="Ideart"
-        />
-      </a>
-      <h1>Iniciar Sesión</h1>
-      <input
-        placeholder="Correo"
-        type="email"
-        id="email"
-        name="email"
-        required=""
-      />
-      <input
-        placeholder="Contraseña"
-        type="password"
-        id="contrasena"
-        name="contrasena"
-        required=""
-      />
-      <button type="button" onclick="iniciarSesion()">
-        Iniciar Sesión
-      </button>
-    </form>
-  </div>
-  <div className="toggle-container">
-    <div className="toggle">
-      <div className="toggle-panel toggle-left">
-        <h1>Hola de nuevo</h1>
-        <p>
-          Ingresa tus datos personales para acceder a los servicios de Ideart
-        </p>
-        <button className="hidden" id="login">
-          Iniciar Sesión
-        </button>
+const LoginRegistro = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [nombre, setNombre] = useState('');
+  const [apellido, setApellido] = useState('');
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    // Lógica para iniciar sesión
+  };
+
+  const handleRegistroSubmit = (e) => {
+    e.preventDefault();
+    // Lógica para registrar un nuevo usuario
+  };
+
+  return (
+    <div className="login-registro-container">
+      <div className="login-section">
+      <div className="logo-container">
+        <img src={logoNegro} width="100px" alt="Ideart" />
       </div>
-      <div className="toggle-panel toggle-right">
-        <h1>Hola!</h1>
-        <p>
-          Registrate con tus datos personales para acceder a los servicios de
-          Ideart
-        </p>
-        <button className="hidden" id="register">
-          Registrarse
-        </button>
+        <h2>Iniciar sesión</h2>
+        <form onSubmit={handleLoginSubmit}>
+          <input type="email" placeholder="Correo electrónico" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <button type="submit">Iniciar sesión</button>
+        </form>
+      </div>
+      <div className="linea-vertical"></div>
+      <div className="registro-section">
+        <h2>Registro</h2>
+        <form onSubmit={handleRegistroSubmit}>
+          <input type="text" placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
+          <input type="text" placeholder="Apellido" value={apellido} onChange={(e) => setApellido(e.target.value)} />
+          <input type="email" placeholder="Correo electrónico" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <button type="submit">Registrarse</button>
+        </form>
       </div>
     </div>
-  </div>
-</div>
-
-        </div>
-    );
+  );
 };
 
-export default LogIn;
+export default LoginRegistro;

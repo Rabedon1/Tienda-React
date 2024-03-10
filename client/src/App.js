@@ -15,7 +15,7 @@ import './components/Catalogo.css';
 import './components/FAQS.css'; 
 import './components/Empresa.css';
 import './components/Footer.css';
-// import './components/Login.css';  
+//import './components/Login.css';  
 
 
 function App() {
@@ -27,9 +27,10 @@ function App() {
           <Route path='/catalogoSellos' element={<CatalogoSellos/>}/>
           <Route path='/empresa' element={<Empresa/>}/>
           <Route path='/fAQS' element={<FAQS/>}/>
-          <Route path='/logIn' element={<LogIn/>}/>
+          
           {/* <Route path='*' element={<div>404 - not found</div>}/> */}
         </Route>
+        <Route path='/logIn' element={<LogIn/>}/>
       </Routes>
     
   );
