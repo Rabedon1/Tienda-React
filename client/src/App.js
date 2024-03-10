@@ -27,10 +27,11 @@ function App() {
           <Route path='/catalogoSellos' element={<CatalogoSellos/>}/>
           <Route path='/empresa' element={<Empresa/>}/>
           <Route path='/fAQS' element={<FAQS/>}/>
+          <Route path='/logIn' element={<LogIn/>}/>
           
           {/* <Route path='*' element={<div>404 - not found</div>}/> */}
         </Route>
-        <Route path='/logIn' element={<LogIn/>}/>
+        
       </Routes>
     
   );
