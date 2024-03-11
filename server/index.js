@@ -97,6 +97,26 @@ app.get("/getproductos",(req,res)=>{
 
 });
 
+//CREATE
+app.put("/update",(req,res)=>{
+
+  const id =req.body.id;
+  const producto =req.body.producto;
+  const cantidad =req.body.cantidad;
+  const precio =req.body.precio;
+  const categoria =req.body.categoria;
+   
+ connection.query('UPDATE productos SET Producto=?,Cantidad=?,Precio=?,Categoria=? WHERE id=? ',[producto,cantidad,precio,categoria,id],
+  (err,result)=>{
+    if(err){
+      console.log(err);
+    }else{
+      res.send("Producto Actualizado con exito");
+    }
+  }
+  );
+
+});
 
 
 app.listen(PORT, () => {

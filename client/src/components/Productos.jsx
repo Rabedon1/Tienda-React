@@ -9,6 +9,9 @@ const Productos = () => {
     const [cantidad,setCantidad] = useState(0);
     const [precio,setPrecio] = useState(0);
     const [categoria,setCategoria] = useState("");
+    const [id,setId] = useState(0);
+    
+    const [editar,setEditar] = useState(false);
 
 
     //lista Productos
@@ -22,12 +25,7 @@ const registrar = ()=>{
         return;
     }
 
-    // Validar que la categoría sea una de las permitidas
-    const categoriasPermitidas = ["Sellos", "Jarros", "Almohadillas", "Tintas"];
-    if (!categoriasPermitidas.includes(categoria)) {
-        alert("La categoría ingresada no es válida.");
-        return;
-    }
+  
     
     Axios.post("http://localhost:5000/create",{
         producto:producto,
@@ -42,6 +40,15 @@ const registrar = ()=>{
     });
 }
 
+const editarProducto = (value)=>{
+    setEditar(true);
+
+    setProducto(value.producto);
+    setCantidad(value.cantidad);
+    setPrecio(value.precio);
+    setId(value.id);
+    setCategoria(value.categoria);
+}
 
 //Read 
 const getProductos = ()=>{
@@ -62,22 +69,25 @@ const getProductos = ()=>{
                 onChange={(event)=>{
                     setProducto(event.target.value);
                 }}
-                type="texto"/></label>
+                type="texto" /></label>
                 <label>Cantidad: <input 
                 onChange={(event)=>{
                     setCantidad(event.target.value);
                 }}
-                type="number"/></label>
+                type="number" /></label>
                 <label>Precio: <input 
                 onChange={(event)=>{
                     setPrecio(event.target.value);
                 }}
-                type="number"/></label>
-                <label>Categoria: <input 
-                onChange={(event)=>{
-                    setCategoria(event.target.value);
-                }}
-                type="texto"/></label>
+                type="number" /></label>
+               <label>Categoria: 
+    <select onChange={(event) => setCategoria(event.target.value)}>
+        <option value="Sellos">Sellos</option>
+        <option value="Jarros">Jarros</option>
+        <option value="Almohadillas">Almohadillas</option>
+        <option value="Tintas">Tintas</option>
+    </select>
+</label>
             </div>
             <div className='lista'> 
             
@@ -92,6 +102,8 @@ const getProductos = ()=>{
       <th scope="col">Cantidad</th>
       <th scope="col">Precio</th>
       <th scope="col">Categoria</th>
+    {/* <th scope="col">ACTUALIZAR</th> */}
+
 
     </tr>
   </thead>
@@ -106,6 +118,13 @@ const getProductos = ()=>{
                 <td>{value.Cantidad}</td>
                 <td>{value.Precio}</td>
                 <td>{value.Categoria}</td>
+                {/* <td>
+                <button 
+                onClick={()=>{
+                    editarProducto(value);
+                    }}>UPDATE</button>
+                </td> */}
+
             </tr>
         );
     })
@@ -114,9 +133,14 @@ const getProductos = ()=>{
     
     
   </tbody>
-            </table>   
+            </table> 
+            <div>
+                
             <button  onClick={registrar}>REGISTRAR</button>
             <button onClick={getProductos}>READ</button>
+            </div>
+            
+            
             
         </div>
 
