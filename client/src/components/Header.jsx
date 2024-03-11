@@ -3,7 +3,10 @@ import {Link, Outlet} from 'react-router-dom'
 import logoNegro from '../image/logoNegro.png';
 
 
-const Header = () => {
+const Header = ({isLoggedIn}) => {
+  const handleLogout = () => {
+    // Implementa la lógica para cerrar sesión
+  };
     return (
 
     <div>
@@ -37,9 +40,20 @@ const Header = () => {
               <li className="navMenuItem">
                 <Link to="/empresa" className='navMenuLink navLink'>Empresa</Link> 
               </li>
-              <li className="navMenuItem">
-                <Link to="/logIn" className='navMenuLink navLink'>Inicio Seccion</Link> 
-              </li>
+              {isLoggedIn ? (
+                <li className="navMenuItem">
+                  <Link to="/ClienteInfo" className='navMenuLink navLink'>Mi cuenta</Link>
+                </li>
+              ) : (
+                <li className="navMenuItem">
+                  <Link to="/LogIn" className='navMenuLink navLink'>Iniciar sesión</Link>
+                </li>
+              )}
+              {isLoggedIn && (
+                <li className="navMenuItem">
+                  <button onClick={handleLogout} className='navMenuLink navLink'>Cerrar sesión</button>
+                </li>
+              )}
               <li className="navMenuItem">
                 <Link to="/Productos" className='navMenuLink navLink'>Producto</Link> 
               </li>

@@ -1,5 +1,3 @@
-// server.js
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -26,24 +24,40 @@ app.post('/registro', (req, res) => {
   });
 });
 
-app.post('/login', (req, res) => {
-    const { email, password } = req.body;
-    const SELECT_USER_QUERY = `SELECT * FROM clientes WHERE email = ? AND password = ?`;
-    connection.query(SELECT_USER_QUERY, [email, password], (err, results) => {
-      if (err) {
-        console.error('Error al realizar inicio de sesión:', err);
-        res.status(500).send('Error interno del servidor');
-        return;
-      }
-      if (results.length > 0) {
-        // Usuario autenticado correctamente
-        res.status(200).json({ message: 'Inicio de sesión exitoso' });
-      } else {
-        // Credenciales inválidas
-        res.status(401).json({ message: 'Credenciales inválidas' });
-      }
-    });
+app.put('/actualizarCliente', (req, res) => {
+  const { nombre, apellido, telefono, nacimiento, email } = req.body;
+  const UPDATE_USER_QUERY = `UPDATE clientes SET nombre = ?, apellido = ?, telefono = ?, nacimiento = ? WHERE email = ?`;
+  connection.query(UPDATE_USER_QUERY, [nombre, apellido, telefono, nacimiento, email], (err, results) => {
+    if (err) {
+      console.error('Error al actualizar datos del cliente:', err);
+      res.status(500).send('Error interno del servidor');
+      return;
+    }
+    console.log('Datos del cliente actualizados:', results.changedRows);
+    res.status(200).send('Datos actualizados correctamente');
   });
+});
+
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  const SELECT_USER_QUERY = `SELECT * FROM clientes WHERE email = ? AND password = ?`;
+  connection.query(SELECT_USER_QUERY, [email, password], (err, results) => {
+    if (err) {
+      console.error('Error al realizar inicio de sesión:', err);
+      res.status(500).send('Error interno del servidor');
+      return;
+    }
+    if (results.length > 0) {
+      // Usuario autenticado correctamente
+      const user = results[0];
+      res.status(200).json({ message: 'Inicio de sesión exitoso', user });
+    } else {
+      // Credenciales inválidas
+      res.status(401).json({ message: 'Credenciales inválidas' });
+    }
+  });
+});
+
   
 //BASE DE DATOS DE LOS PRODUCTOS
 
