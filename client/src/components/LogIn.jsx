@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Login.css'
 import logoNegro from '../image/logoNegro.png';
 
-const LoginRegistro = () => {
+const LoginRegistro = ({ setIsLoggedIn , setUserData}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [nombre, setNombre] = useState('');
@@ -26,8 +26,11 @@ const LoginRegistro = () => {
       });
       if (response.ok) {
         // Inicio de sesión exitoso
+        const data = await response.json();
         console.log('Inicio de sesión exitoso');
-        alert('inicio de sesion exitoso bienvenido!')
+        setIsLoggedIn(true);
+        setUserData(data.user); // Almacena los datos del usuario
+        alert('inicio de sesion exitoso bienvenido!');
       } else {
         // Credenciales inválidas
         alert('Correo electrónico o contraseña incorrectos.');
@@ -77,9 +80,11 @@ const LoginRegistro = () => {
       });
       if (response.ok) {
         // Registro exitoso
+        alert('Registro exitoso')
         console.log('Usuario registrado correctamente');
       } else {
         // Error al registrar
+        alert('este correo ya se encuentre registrado')
         console.error('Error al registrar usuario');
       }
     } catch (error) {
