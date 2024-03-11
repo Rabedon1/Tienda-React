@@ -5,13 +5,30 @@ import Axios from "axios";
 
 
 const Productos = () => {
-
     const [producto,setProducto] = useState("");
     const [cantidad,setCantidad] = useState(0);
     const [precio,setPrecio] = useState(0);
     const [categoria,setCategoria] = useState("");
 
+
+    //lista Productos
+    const [productosList,setProductos]= useState([]);
+
+    //Create
 const registrar = ()=>{
+
+    if (cantidad < 0 || precio < 0) {
+        alert("La cantidad y el precio deben ser números positivos.");
+        return;
+    }
+
+    // Validar que la categoría sea una de las permitidas
+    const categoriasPermitidas = ["Sellos", "Jarros", "Almohadillas", "Tintas"];
+    if (!categoriasPermitidas.includes(categoria)) {
+        alert("La categoría ingresada no es válida.");
+        return;
+    }
+    
     Axios.post("http://localhost:5000/create",{
         producto:producto,
         cantidad:cantidad,
@@ -20,14 +37,25 @@ const registrar = ()=>{
 
 
     }).then(()=>{
+        getProductos();
         alert("Producto Registrado");
     });
 }
 
 
+//Read 
+const getProductos = ()=>{
+    Axios.get("http://localhost:5000/getproductos").then((response)=>{
+        setProductos(response.data);
+    });
+}
+
 
     return (
-
+        <div class="container">
+            <h1>
+                PRODUCTOS
+            </h1>
         <div className="Productos">
             <div className="datos">
                 <label>Productos: <input 
@@ -50,53 +78,50 @@ const registrar = ()=>{
                     setCategoria(event.target.value);
                 }}
                 type="texto"/></label>
-                <button onClick={registrar}>Registrar Producto</button>
-
-
             </div>
+            <div className='lista'> 
+            
+            </div>
+            </div>
+
+            <table class="table table-striped">
+            <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Producto</th>
+      <th scope="col">Cantidad</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Categoria</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+  {
+    productosList.map((value, key) => {
+        return (
+            <tr key={key}>
+                <th scope="row">{value.id}</th>
+                <td>{value.Producto}</td>
+                <td>{value.Cantidad}</td>
+                <td>{value.Precio}</td>
+                <td>{value.Categoria}</td>
+            </tr>
+        );
+    })
+}
+
+    
+    
+  </tbody>
+            </table>   
+            <button  onClick={registrar}>REGISTRAR</button>
+            <button onClick={getProductos}>READ</button>
+            
         </div>
-       /*  <div class="container">
-            <h1>REGISTRO DE PRODUCTOS</h1>
-            <table class="table">
-                <thead class="table-dark">
-                    <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Producto</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Categoria</th>
-                    </tr>
-                 </thead>
-                 <tbody class="table-group-divider">
-                    <tr>
-                     <th scope="row">1</th>
-                     <td>Mark</td>
-                     <td>Otto</td>
-                     <td>@mdo</td>
-                     <td>@mdo</td>
-                    </tr>
-                     <tr>
-                     <th scope="row">2</th>
-                     <td>Jacob</td>
-                     <td>Thornton</td>
-                     <td>@fat</td>
-                     <td>@mdo</td>
-                     </tr>
-                     <tr>
-                     <th scope="row">3</th>
-                     <td colspan="2">Larry the Bird</td>
-                     <td>@twitter</td>
-                     <td>@mdo</td>
-                    </tr>
-                    
-                 </tbody>
-            </table>
-            <div className="btn-group" role= "group" aria-label="Basic example">
-                <button type="button" className="btn btn-primary">Mostrar</button>
 
 
-            </div>
-        </div> */
+       
 
     );
 };

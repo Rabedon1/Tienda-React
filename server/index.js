@@ -47,17 +47,17 @@ app.post('/login', (req, res) => {
   
 //BASE DE DATOS DE LOS PRODUCTOS
 
-//READ
+//CREATE
 app.post("/create",(req,res)=>{
   const producto =req.body.producto;
   const cantidad =req.body.cantidad;
   const precio =req.body.precio;
   const categoria =req.body.categoria;
    
- connection.query('INSERT INTO productos(Producto,Cantidad,Precio,Categoria) VALUES(?,?,?,?,?)',[producto,cantidad,precio,categoria],
+ connection.query('INSERT INTO productos(Producto,Cantidad,Precio,Categoria) VALUES(?,?,?,?)',[producto,cantidad,precio,categoria],
   (err,result)=>{
     if(err){
-      console-log(err);
+      console.log(err);
     }else{
       res.send("Producto Registrado con exito");
     }
@@ -65,6 +65,25 @@ app.post("/create",(req,res)=>{
   );
 
 });
+
+
+//READ
+app.get("/getproductos",(req,res)=>{
+  
+   
+ connection.query('SELECT * FROM productos',
+  (err,result)=>{
+    if(err){
+      console.log(err);
+    }else{
+      res.send(result);
+    }
+  }
+  );
+
+});
+
+
 
 app.listen(PORT, () => {
   console.log(`Servidor backend en ejecución en el puerto ${PORT}`);
