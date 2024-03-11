@@ -4,9 +4,7 @@ import logoNegro from '../image/logoNegro.png';
 
 
 const Header = ({isLoggedIn}) => {
-  const handleLogout = () => {
-    // Implementa la lógica para cerrar sesión
-  };
+
     return (
 
     <div>
@@ -15,15 +13,6 @@ const Header = ({isLoggedIn}) => {
           <a href="../index.html" className="logo">
           <img className="imgLogo" src={logoNegro} alt="Ideart" />
           </a>
-            <div className="buscar">
-              <input type="text" placeholder="Buscar" required="" />
-              <div className="btn">
-                <i
-                  className="fa-solid fa-magnifying-glass"
-                  style={{ color: "#8a938f" }}
-                />
-              </div>
-            </div>
             <button className="toggle">
               <i className="fa-solid fa-bars" />
             </button>
@@ -49,14 +38,6 @@ const Header = ({isLoggedIn}) => {
                   <Link to="/LogIn" className='navMenuLink navLink'>Iniciar sesión</Link>
                 </li>
               )}
-              {isLoggedIn && (
-                <li className="navMenuItem">
-                  <button onClick={handleLogout} className='navMenuLink navLink'>Cerrar sesión</button>
-                </li>
-              )}
-              <li className="navMenuItem">
-                <Link to="/Productos" className='navMenuLink navLink'>Producto</Link> 
-              </li>
             </ul>
         </nav>
       </header>
