@@ -40,6 +40,9 @@ const Header = () => {
               <li className="navMenuItem">
                 <Link to="/logIn" className='navMenuLink navLink'>Inicio Seccion</Link> 
               </li>
+              <li className="navMenuItem">
+                <Link to="/Productos" className='navMenuLink navLink'>Producto</Link> 
+              </li>
             </ul>
         </nav>
       </header>

@@ -17,6 +17,7 @@ import './components/Catalogo.css';
 import './components/FAQS.css'; 
 import './components/Empresa.css';
 import './components/Footer.css';
+//import  './components/Productos.css';
 //import './components/Login.css';  
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -31,13 +32,17 @@ function App() {
           <Route path='/empresa' element={<Empresa/>}/>
           <Route path='/fAQS' element={<FAQS/>}/>
           <Route path='/logIn' element={<LogIn/>}/>
+          <Route path='/Productos' element={<Productos/>}/>
+
+
           
           {/* <Route path='*' element={<div>404 - not found</div>}/> */}
         </Route>
         
       </Routes>
-      <Productos/>
+      
     </div> 
+   
   );
 }
 
